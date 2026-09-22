@@ -1,0 +1,676 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0b1120;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Visible keyboard focus (accessibility) */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #facc15;
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+
+header {
+    background-color: #111827;
+    padding: 18px 8%;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    border-bottom: 1px solid #1f2937;
+
+    transition: background-color 0.3s;
+}
+
+/* Added by script.js when the page is scrolled */
+header.scrolled {
+    background-color: #020617;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+nav h2::first-letter {
+    color: #facc15;
+}
+
+
+/* Navigation Links */
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #facc15;
+}
+
+nav ul li a.active {
+    color: #facc15;
+}
+
+
+/* Mobile Menu Button */
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #facc15;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+section {
+    padding: 80px 8%;
+
+    /* Keeps section headings visible below the sticky header */
+    scroll-margin-top: 70px;
+}
+
+section h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+    color: #facc15;
+}
+
+
+/* =========================
+   HOME SECTION
+========================= */
+
+#home {
+    min-height: 90vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+
+/* Home Left Content */
+
+.home-content {
+    max-width: 650px;
+}
+
+.intro-text {
+    color: #facc15;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.home-content h1 {
+    font-size: 65px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.home-content h1 span {
+    color: #facc15;
+}
+
+.home-content h2 {
+    color: #facc15;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #cbd5e1;
+    font-size: 17px;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BUTTONS (Home + Contact)
+========================= */
+
+.home-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-block;
+    padding: 13px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Primary Button */
+
+.primary-btn {
+    background-color: #facc15;
+    color: #111827;
+}
+
+.primary-btn:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Secondary Button */
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid #facc15;
+    color: #facc15;
+}
+
+.secondary-btn:hover {
+    background-color: #facc15;
+    color: #111827;
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.home-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-circle {
+    width: 350px;
+    height: 350px;
+    padding: 7px;
+    border-radius: 50%;
+    border: 3px solid #facc15;
+    box-shadow:
+        0 0 20px rgba(250, 204, 21, 0.3),
+        0 0 60px rgba(250, 204, 21, 0.15);
+}
+
+.image-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+#about {
+    background-color: #111827;
+}
+
+#about p {
+    max-width: 800px;
+    color: #cbd5e1;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   SKILLS SECTION
+========================= */
+
+#skills ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style: none;
+}
+
+#skills li {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+#skills li:hover {
+    border-color: #facc15;
+    transform: translateY(-5px);
+    color: #facc15;
+}
+
+
+/* =========================
+   PROJECTS SECTION
+========================= */
+
+#projects {
+    background-color: #111827;
+}
+
+#projects > h2 {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+/* Projects Container */
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Project Card */
+
+.project-card {
+    background-color: #0b1120;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: #facc15;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Project Image */
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Project Content */
+
+.project-content {
+    padding: 22px;
+}
+
+.project-content h3 {
+    color: #facc15;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.project-content p {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+/* Project Technologies */
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-tech span {
+    background-color: #1f2937;
+    color: #facc15;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* Project Buttons */
+
+.project-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.project-buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Live Demo */
+
+.live-btn {
+    background-color: #facc15;
+    color: #111827;
+}
+
+.live-btn:hover {
+    background-color: #ffffff;
+}
+
+/* GitHub */
+
+.github-btn {
+    border: 1px solid #facc15;
+    color: #facc15;
+    background-color: transparent;
+}
+
+.github-btn:hover {
+    background-color: #facc15;
+    color: #111827;
+}
+
+
+/* =========================
+   CONTACT SECTION
+========================= */
+
+#contact {
+    background-color: #0b1120;
+}
+
+#contact p {
+    color: #cbd5e1;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#contact p a {
+    color: #facc15;
+    text-decoration: none;
+}
+
+#contact p a:hover {
+    text-decoration: underline;
+}
+
+/* LinkedIn / GitHub / Resume buttons */
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    background-color: #020617;
+    padding: 20px;
+    color: #94a3b8;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    #home {
+        gap: 30px;
+    }
+
+    .home-content h1 {
+        font-size: 50px;
+    }
+
+    .image-circle {
+        width: 280px;
+        height: 280px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #skills ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Navbar */
+
+    nav {
+        position: relative;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 55px;
+        right: 0;
+        width: 200px;
+        background-color: #111827;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #1f2937;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    nav ul.show-menu {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px;
+    }
+
+    /* Home */
+
+    #home {
+        min-height: auto;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .home-content {
+        max-width: 100%;
+    }
+
+    .home-content h1 {
+        font-size: 45px;
+    }
+
+    .home-content h2 {
+        font-size: 26px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .home-buttons {
+        justify-content: center;
+    }
+
+    .home-image {
+        margin-top: 20px;
+    }
+
+    .image-circle {
+        width: 260px;
+        height: 260px;
+    }
+
+    /* Skills */
+
+    #skills ul {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Projects */
+
+    .projects-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 60px 5%;
+    }
+
+    section h2 {
+        font-size: 30px;
+    }
+
+    .home-content h1 {
+        font-size: 36px;
+    }
+
+    .home-content h2 {
+        font-size: 23px;
+    }
+
+    .image-circle {
+        width: 210px;
+        height: 210px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card img {
+        height: 220px;
+    }
+
+    #skills ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================
+   VERY SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 15px 5%;
+    }
+
+    nav h2 {
+        font-size: 22px;
+    }
+
+    nav ul {
+        width: 180px;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   (for people who turn off animations on their device)
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
