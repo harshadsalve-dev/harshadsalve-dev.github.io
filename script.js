@@ -1,227 +1,58 @@
-// ===============================
-// STATE
-// ===============================
-
-let previousOperand = "";
-let currentOperand = "0";
-let operator = null;
-let justEvaluated = false; // true right after "=" — next digit starts fresh
-
-const expressionEl = document.getElementById("expression");
-const resultEl = document.getElementById("result");
-const keys = document.querySelectorAll(".key");
+// Select header, navbar and navigation list
+const header = document.querySelector("header");
+const nav = document.querySelector("nav");
+const navList = document.querySelector("nav ul");
 
 
 // ===============================
-// DISPLAY FORMATTING
+// CREATE HAMBURGER BUTTON
 // ===============================
 
-function formatNumber(value) {
+const menuButton = document.createElement("button");
 
-    if (value === "" || value === undefined) return "";
+menuButton.innerHTML = "☰";
+menuButton.classList.add("menu-btn");
 
-    const [intPart, decimalPart] = value.split(".");
+// Accessibility: screen readers can announce what this button does
+menuButton.setAttribute("aria-label", "Toggle menu");
+menuButton.setAttribute("aria-expanded", "false");
 
-    // Add thousands separators to the integer part only
-    const formattedInt = intPart === "" || intPart === "-"
-        ? intPart
-        : Number(intPart).toLocaleString("en-IN");
-
-    return decimalPart !== undefined
-        ? `${formattedInt}.${decimalPart}`
-        : formattedInt;
-}
-
-function updateDisplay() {
-
-    resultEl.classList.remove("error");
-    resultEl.textContent = formatNumber(currentOperand);
-
-    expressionEl.textContent = operator
-        ? `${formatNumber(previousOperand)} ${operator}`
-        : "";
-
-    // Highlight the active operator key
-    keys.forEach(function (key) {
-        if (key.dataset.action === "operator") {
-            key.classList.toggle(
-                "is-active",
-                key.dataset.operator === operator
-            );
-        }
-    });
-}
+// Add button inside navbar
+nav.appendChild(menuButton);
 
 
 // ===============================
-// CORE ACTIONS
+// OPEN / CLOSE MOBILE MENU
 // ===============================
 
-function inputNumber(digit) {
+menuButton.addEventListener("click", function () {
 
-    if (justEvaluated) {
-        currentOperand = "0";
-        previousOperand = "";
-        operator = null;
-        justEvaluated = false;
-    }
+    navList.classList.toggle("show-menu");
 
-    if (currentOperand === "0") {
-        currentOperand = digit;
-    } else {
-        // Keep numbers to a sane length so the display never overflows
-        if (currentOperand.replace("-", "").replace(".", "").length >= 15) return;
-        currentOperand += digit;
-    }
+    const isOpen = navList.classList.contains("show-menu");
 
-    updateDisplay();
-}
+    // Change hamburger icon
+    menuButton.innerHTML = isOpen ? "✕" : "☰";
+    menuButton.setAttribute("aria-expanded", String(isOpen));
 
-function inputDecimal() {
-
-    if (justEvaluated) {
-        currentOperand = "0";
-        previousOperand = "";
-        operator = null;
-        justEvaluated = false;
-    }
-
-    if (!currentOperand.includes(".")) {
-        currentOperand += ".";
-    }
-
-    updateDisplay();
-}
-
-function chooseOperator(nextOperator) {
-
-    if (currentOperand === "Error") return;
-
-    justEvaluated = false;
-
-    // Chain operations: if an operator was already pending, resolve it first
-    if (operator && previousOperand !== "") {
-        evaluate();
-    }
-
-    previousOperand = currentOperand;
-    currentOperand = "0";
-    operator = nextOperator;
-
-    updateDisplay();
-}
-
-function evaluate() {
-
-    if (operator === null || previousOperand === "") return;
-
-    const prev = parseFloat(previousOperand);
-    const curr = parseFloat(currentOperand);
-
-    if (Number.isNaN(prev) || Number.isNaN(curr)) return;
-
-    let value;
-
-    switch (operator) {
-        case "+":
-            value = prev + curr;
-            break;
-        case "−":
-            value = prev - curr;
-            break;
-        case "×":
-            value = prev * curr;
-            break;
-        case "÷":
-            if (curr === 0) {
-                showError();
-                return;
-            }
-            value = prev / curr;
-            break;
-        default:
-            return;
-    }
-
-    // Avoid floating point artifacts like 0.1 + 0.2 = 0.30000000000000004
-    value = Math.round((value + Number.EPSILON) * 1e10) / 1e10;
-
-    currentOperand = String(value);
-    previousOperand = "";
-    operator = null;
-    justEvaluated = true;
-
-    updateDisplay();
-}
-
-function clearAll() {
-    previousOperand = "";
-    currentOperand = "0";
-    operator = null;
-    justEvaluated = false;
-    updateDisplay();
-}
-
-function deleteLast() {
-
-    if (justEvaluated || currentOperand === "Error") {
-        clearAll();
-        return;
-    }
-
-    currentOperand = currentOperand.length > 1
-        ? currentOperand.slice(0, -1)
-        : "0";
-
-    updateDisplay();
-}
-
-function applyPercent() {
-
-    if (currentOperand === "Error") return;
-
-    const value = parseFloat(currentOperand) / 100;
-    currentOperand = String(value);
-    updateDisplay();
-}
-
-function showError() {
-    previousOperand = "";
-    operator = null;
-    currentOperand = "Error";
-    justEvaluated = true;
-
-    resultEl.textContent = "Error";
-    resultEl.classList.add("error");
-    expressionEl.textContent = "Can't divide by zero";
-}
+});
 
 
 // ===============================
-// BUTTON CLICKS
+// CLOSE MENU AFTER CLICKING LINK
+// (smooth scrolling is handled by CSS: scroll-behavior: smooth)
 // ===============================
 
-keys.forEach(function (key) {
+const navLinks = document.querySelectorAll("nav ul li a");
 
-    key.addEventListener("click", function () {
+navLinks.forEach(function (link) {
 
-        const action = key.dataset.action;
+    link.addEventListener("click", function () {
 
-        if (action === "number") {
-            inputNumber(key.dataset.number);
-        } else if (action === "decimal") {
-            inputDecimal();
-        } else if (action === "operator") {
-            chooseOperator(key.dataset.operator);
-        } else if (action === "equals") {
-            evaluate();
-        } else if (action === "clear") {
-            clearAll();
-        } else if (action === "delete") {
-            deleteLast();
-        } else if (action === "percent") {
-            applyPercent();
-        }
+        navList.classList.remove("show-menu");
+
+        menuButton.innerHTML = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
 
     });
 
@@ -229,61 +60,42 @@ keys.forEach(function (key) {
 
 
 // ===============================
-// KEYBOARD SUPPORT
+// ACTIVE NAVIGATION LINK
+// + HEADER SCROLL EFFECT
 // ===============================
 
-const keyOperatorMap = {
-    "+": "+",
-    "-": "−",
-    "*": "×",
-    "/": "÷"
-};
+const sections = document.querySelectorAll("section");
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("scroll", function () {
 
-    const { key } = event;
+    // ----- Active link -----
+    let currentSection = "";
 
-    if (/^[0-9]$/.test(key)) {
-        inputNumber(key);
-        return;
-    }
+    sections.forEach(function (section) {
 
-    if (key === ".") {
-        inputDecimal();
-        return;
-    }
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
 
-    if (key in keyOperatorMap) {
-        event.preventDefault(); // stop "/" from triggering browser quick-find
-        chooseOperator(keyOperatorMap[key]);
-        return;
-    }
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ) {
+            currentSection = section.getAttribute("id");
+        }
 
-    if (key === "Enter" || key === "=") {
-        event.preventDefault();
-        evaluate();
-        return;
-    }
+    });
 
-    if (key === "Backspace") {
-        deleteLast();
-        return;
-    }
+    navLinks.forEach(function (link) {
 
-    if (key === "Escape") {
-        clearAll();
-        return;
-    }
+        link.classList.remove("active");
 
-    if (key === "%") {
-        applyPercent();
-    }
+        if (link.getAttribute("href") === "#" + currentSection) {
+            link.classList.add("active");
+        }
+
+    });
+
+    // ----- Header effect (darker background after scrolling) -----
+    header.classList.toggle("scrolled", window.scrollY > 50);
 
 });
-
-
-// ===============================
-// INIT
-// ===============================
-
-updateDisplay();
