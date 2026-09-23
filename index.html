@@ -6,306 +6,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Harshad Salve | Frontend Developer Portfolio</title>
+    <title>Calculator | Harshad Salve</title>
+    <meta name="description" content="A simple, keyboard-friendly calculator built with HTML, CSS and JavaScript.">
 
-    <meta name="description" content="Portfolio of Harshad Salve, a fresher frontend developer from Pune skilled in HTML, CSS, JavaScript and React.js.">
-
-    <!-- Favicon (simple yellow "H") -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1120'/><text x='50' y='72' font-size='70' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23facc15'>H</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1120'/><text x='50' y='72' font-size='60' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23facc15'>%3D</text></svg>">
 
     <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <a href="https://harshadsalve-dev.github.io/" class="back-link">&larr; Back to portfolio</a>
 
-    <!-- =========================
-         HEADER / NAVBAR
-    ========================== -->
+    <main class="calculator" id="calculator">
 
-    <header>
+        <div class="display" aria-live="polite">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
 
-        <nav>
+        <div class="keys">
 
-            <h2>Harshad Salve</h2>
+            <button class="key key-fn" data-action="clear">AC</button>
+            <button class="key key-fn" data-action="delete">⌫</button>
+            <button class="key key-fn" data-action="percent">%</button>
+            <button class="key key-op" data-action="operator" data-operator="÷">÷</button>
 
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <button class="key key-num" data-action="number" data-number="7">7</button>
+            <button class="key key-num" data-action="number" data-number="8">8</button>
+            <button class="key key-num" data-action="number" data-number="9">9</button>
+            <button class="key key-op" data-action="operator" data-operator="×">×</button>
 
-        </nav>
+            <button class="key key-num" data-action="number" data-number="4">4</button>
+            <button class="key key-num" data-action="number" data-number="5">5</button>
+            <button class="key key-num" data-action="number" data-number="6">6</button>
+            <button class="key key-op" data-action="operator" data-operator="−">−</button>
 
-    </header>
+            <button class="key key-num" data-action="number" data-number="1">1</button>
+            <button class="key key-num" data-action="number" data-number="2">2</button>
+            <button class="key key-num" data-action="number" data-number="3">3</button>
+            <button class="key key-op" data-action="operator" data-operator="+">+</button>
 
-
-
-    <!-- =========================
-         HOME SECTION
-    ========================== -->
-
-    <section id="home">
-
-        <!-- Left Content -->
-        <div class="home-content">
-
-            <p class="intro-text">Hello, I'm</p>
-
-            <h1>Harshad <span>Salve</span></h1>
-
-            <h2>Frontend Developer</h2>
-
-            <p class="description">
-                I am a BCS graduate and currently learning
-                Frontend Development using HTML, CSS, JavaScript and React.js.
-                I love creating simple, clean and responsive websites.
-            </p>
-
-            <div class="home-buttons">
-                <a href="#projects" class="primary-btn">View My Projects</a>
-                <a href="#contact" class="secondary-btn">Contact Me</a>
-            </div>
+            <button class="key key-num key-zero" data-action="number" data-number="0">0</button>
+            <button class="key key-num" data-action="decimal">.</button>
+            <button class="key key-equals" data-action="equals">=</button>
 
         </div>
 
-        <!-- Profile Image -->
-        <div class="home-image">
-            <div class="image-circle">
-                <img src="profile.jpg" alt="Harshad Salve">
-            </div>
-        </div>
+        <p class="hint">Keyboard works too — numbers, + − × / (or */), Enter, Backspace, Esc</p>
 
-    </section>
+    </main>
 
-
-
-    <!-- =========================
-         ABOUT SECTION
-    ========================== -->
-
-    <section id="about">
-
-        <h2>About Me</h2>
-
-        <p>
-            Hello! I am Harshad Salve from Pune, Maharashtra. I completed my BCS
-            and I am currently pursuing my MCA. I am interested in web development
-            and I am improving my frontend skills by building small projects.
-        </p>
-
-        <p>
-            I enjoy creating clean, simple and responsive websites using
-            HTML, CSS, JavaScript and React.js, and I am looking for an
-            entry-level frontend developer role where I can learn and grow.
-        </p>
-
-    </section>
-
-
-
-    <!-- =========================
-         SKILLS SECTION
-    ========================== -->
-
-    <section id="skills">
-
-        <h2>My Skills</h2>
-
-        <!-- TIP: Only keep the skills you are comfortable talking about in an interview -->
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>React.js</li>
-            <li>Responsive Design</li>
-            <li>Git &amp; GitHub</li>
-        </ul>
-
-    </section>
-
-
-
-    <!-- =========================
-         PROJECTS SECTION
-    ========================== -->
-
-    <section id="projects">
-
-        <h2>My Projects</h2>
-
-        <div class="projects-container">
-
-
-            <!-- PROJECT 1 -->
-            <!-- TODO: Replace YOUR-GITHUB-USERNAME with your real GitHub username -->
-            <div class="project-card">
-
-                <img src="project1.jpg" alt="Personal portfolio website screenshot">
-
-                <div class="project-content">
-
-                    <h3>Personal Portfolio</h3>
-
-                    <p>
-                        A responsive personal portfolio website with a mobile menu,
-                        smooth scrolling and active link highlighting.
-                    </p>
-
-                    <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <div class="project-buttons">
-                        <a href="https://harshadsalve-dev.github.io/"
-                           class="live-btn" target="_blank" rel="noopener noreferrer">Live Demo</a>
-
-                        <a href="https://github.com/harshadsalve-dev/harshadsalve-dev.github.io"
-                           class="github-btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PROJECT 2 -->
-            <!-- TODO: Replace YOUR-GITHUB-USERNAME and "calculator" with your real repo name.
-                 TODO: Add 1-2 real features (e.g. keyboard support, clear/delete buttons). -->
-            <div class="project-card">
-
-                <img src="project2.jpg" alt="Calculator app screenshot">
-
-                <div class="project-content">
-
-                    <h3>Calculator</h3>
-
-                    <p>
-                        A simple calculator application
-                        built using HTML, CSS and JavaScript.
-                    </p>
-
-                    <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <div class="project-buttons">
-                        <a href="https://harshadsalve-dev.github.io/calculator/"
-                           class="live-btn" target="_blank" rel="noopener noreferrer">Live Demo</a>
-
-                        <a href="https://github.com/harshadsalve-dev/calculator"
-                           class="github-btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PROJECT 3 -->
-            <!-- TODO: Replace YOUR-GITHUB-USERNAME and "weather-app" with your real repo name.
-                 TODO: If it fetches real data from a weather API, write that here
-                 (e.g. "Shows live weather of any city using a weather API"). -->
-            <div class="project-card">
-
-                <img src="project3.jpg" alt="Weather app screenshot">
-
-                <div class="project-content">
-
-                    <h3>Weather App</h3>
-
-                    <p>
-                        A weather application interface
-                        created using HTML, CSS and JavaScript.
-                    </p>
-
-                    <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-
-                    <div class="project-buttons">
-                        <a href="https://harshadsalve-dev.github.io/weather-app/"
-                           class="live-btn" target="_blank" rel="noopener noreferrer">Live Demo</a>
-
-                        <a href="https://github.com/harshadsalve-dev/weather-app"
-                           class="github-btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         CONTACT SECTION
-    ========================== -->
-
-    <section id="contact">
-
-        <h2>Contact Me</h2>
-
-        <p>
-            Email:
-            <a href="mailto:salveharshad45@gmail.com">salveharshad45@gmail.com</a>
-        </p>
-
-        <p>
-            Location: Pune, Maharashtra
-        </p>
-
-        <!-- TODO: Replace the usernames below.
-             TODO: Put your resume PDF in the same folder and name it exactly
-             "Harshad_Salve_Resume.pdf", or delete the Resume button. -->
-        <div class="contact-links">
-
-            <a href="https://www.linkedin.com/in/harshadsalve"
-               class="primary-btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-
-            <a href="https://github.com/harshadsalve-dev"
-               class="secondary-btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-
-            <a href="Harshad_Salve_Resume.pdf"
-               class="secondary-btn" download>Download Resume</a>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        <p>© 2026 Harshad Salve. All Rights Reserved.</p>
-
-    </footer>
-
-
-
-    <!-- JavaScript -->
     <script src="script.js"></script>
-
 
 </body>
 
