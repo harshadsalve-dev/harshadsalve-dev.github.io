@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator | Harshad Salve</title>
+    <meta name="description" content="A simple, keyboard-friendly calculator built with HTML, CSS and JavaScript.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1120'/><text x='50' y='72' font-size='60' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23facc15'>%3D</text></svg>">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <a href="https://harshadsalve-dev.github.io/" class="back-link">&larr; Back to portfolio</a>
+
+    <main class="calculator" id="calculator">
+
+        <div class="display" aria-live="polite">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+
+        <div class="keys">
+
+            <button class="key key-fn" data-action="clear">AC</button>
+            <button class="key key-fn" data-action="delete">⌫</button>
+            <button class="key key-fn" data-action="percent">%</button>
+            <button class="key key-op" data-action="operator" data-operator="÷">÷</button>
+
+            <button class="key key-num" data-action="number" data-number="7">7</button>
+            <button class="key key-num" data-action="number" data-number="8">8</button>
+            <button class="key key-num" data-action="number" data-number="9">9</button>
+            <button class="key key-op" data-action="operator" data-operator="×">×</button>
+
+            <button class="key key-num" data-action="number" data-number="4">4</button>
+            <button class="key key-num" data-action="number" data-number="5">5</button>
+            <button class="key key-num" data-action="number" data-number="6">6</button>
+            <button class="key key-op" data-action="operator" data-operator="−">−</button>
+
+            <button class="key key-num" data-action="number" data-number="1">1</button>
+            <button class="key key-num" data-action="number" data-number="2">2</button>
+            <button class="key key-num" data-action="number" data-number="3">3</button>
+            <button class="key key-op" data-action="operator" data-operator="+">+</button>
+
+            <button class="key key-num key-zero" data-action="number" data-number="0">0</button>
+            <button class="key key-num" data-action="decimal">.</button>
+            <button class="key key-equals" data-action="equals">=</button>
+
+        </div>
+
+        <p class="hint">Keyboard works too — numbers, + − × / (or */), Enter, Backspace, Esc</p>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
